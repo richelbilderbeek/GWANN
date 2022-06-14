@@ -1,0 +1,35 @@
+# Determine if GWANN can build and run
+on:
+  push:
+  pull_request:
+
+name: run
+
+jobs:
+  run:
+
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install python3-pip, thanks Pavlin Mitev
+        run: |
+          sudo apt install -qq python3-pip
+          python3 -m pip install --upgrade pip
+
+      - name: Install dependencies using python3, thanks Pavlin Mitev
+        run: python3 -m pip install -r requirements.txt
+
+      - name: Simulate
+        run: python3 GWANN.py simulate -p 10000 -P 1 -s 300 -n 100 -S 1
+
+      - name: Train
+        run: $ python3 GWANN.py train -e 500 -S 30 -r 0.7 -w 15 --path simulation/data/ --verbose
+
+      - name: Predict
+        run: python3 GWANN.py run --vcf INPUT.vcf.gz --pheno INPUT.pheno -t Plant_Height --model models/net-accuracy.pt --output output
+
