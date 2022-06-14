@@ -28,7 +28,7 @@ jobs:
         run: wget https://csg.sph.umich.edu/liang/genome/genome-0.2-Linux.tar.gz
 
       - name: Untar 'genome'
-        run: tar -xzf genome-0.2-Linux.tar.gz -c .
+        run: tar -xzf genome-0.2-Linux.tar.gz
 
       - name: Create 'genome' executable in root
         run: mv genome-0.2-Linux/genome-linux-64bit genome
