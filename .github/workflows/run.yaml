@@ -37,7 +37,7 @@ jobs:
         run: python3 GWANN.py simulate -p 10000 -P 1 -s 300 -n 100 -S 1
 
       - name: Train
-        run: $ python3 GWANN.py train -e 500 -S 30 -r 0.7 -w 15 --path simulation/data/ --verbose
+        run: python3 GWANN.py train -e 500 -S 30 -r 0.7 -w 15 --path simulation/data/ --verbose
 
       - name: Predict
         run: python3 GWANN.py run --vcf INPUT.vcf.gz --pheno INPUT.pheno -t Plant_Height --model models/net-accuracy.pt --output output
